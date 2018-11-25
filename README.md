@@ -1,6 +1,6 @@
 # Migrate DNS From Linode To Digital Ocean
 
-Quick and dirty script to migrate DNS records from (Linode)[https://www.linode.com] to (Digital Ocean)[https://www.digitalocean.com].
+Quick and dirty script to migrate DNS records from [Linode](https://www.linode.com) to [Digital Ocean](https://www.digitalocean.com).
 
 This is not my finest code ever written nor is it fully tested. It was designed to be used as a one time script to move my DNS from Linode To Digital Ocean
 
