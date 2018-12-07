@@ -3,15 +3,18 @@
 //
 // Date: 2018-11-24
 // Author: Spicer Matthews (spicer@cloudmanic.com)
-// Last Modified by: spicer
-// Last Modified: 2018-11-25
+// Last Modified by: Spicer Matthews
+// Last Modified: 2018-12-06
 // Copyright: 2017 Cloudmanic Labs, LLC. All rights reserved.
 //
 
 require 'vendor/autoload.php';
 
 // Digital Ocean Access token
-$doAccessToken = "XXXXXXXXXXXXX";
+$doAccessToken = "XXXXXX";
+
+// Domains you want to move over. If you set this to an empty array it bring everyone over
+$domainsToMove = [];
 
 // Get a list of Linode domains we are importing
 $linodeDomains = json_decode(`linode-cli domains list --json`, true);
@@ -29,7 +32,16 @@ $headers = [
 // Loop through the Linode Domains and send them over to DO.
 foreach($linodeDomains AS $key => $row) 
 {
-  doLinodeDomain($client, $headers, $row);
+  if(count($domainsToMove) > 0)
+  {
+    if(in_array($row['domain'], $domainsToMove))
+    {
+      doLinodeDomain($client, $headers, $row);
+    }
+  } else 
+  {
+    doLinodeDomain($client, $headers, $row);
+  }
 }
 
 
